@@ -4,26 +4,6 @@ from odoo.exceptions import ValidationError
 from datetime import timedelta
 
 
-class Course(models.Model):
-    _name = 'openacademy.course'
-    _description = 'Open academy Course'
-
-    name = fields.Char(required=True)
-    description = fields.Text()
-    responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible")
-    sessions = fields.One2many('openacademy.session', 'course_id', string="Sessions")
-
-    _sql_constraints = [
-        ('name_description_check',
-         'CHECK(name != description)',
-         "The title of the course should not be the description"),
-
-        ('name_unique',
-         'UNIQUE(name)',
-         "The course title must be unique"),
-    ]
-
-
 class Session(models.Model):
     _name = 'openacademy.session'
     _description = 'Open academy Session'
@@ -95,23 +75,3 @@ class Session(models.Model):
             start_date = fields.Datetime.from_string(r.start_date)
             end_date = fields.Datetime.from_string(r.end_date)
             r.duration = (end_date - start_date).days + 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
