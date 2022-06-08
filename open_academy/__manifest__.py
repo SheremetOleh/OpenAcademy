@@ -7,14 +7,19 @@
     'sequence': -100,
     'summary': 'Open academy system',
     'description': """Open academy system""",
-    'depends': [],
+    'depends': ['board'],
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/templates.xml',
         'views/course.xml',
         'views/session.xml',
-        'views/partner.xml'
+        'reports/sessions_report_templates.xml',
+        'reports/sessions_report.xml',
+        'wizard/reg_participants_to_sessions_wizard.xml',
+        'views/partner.xml',
+        'views/session_board.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

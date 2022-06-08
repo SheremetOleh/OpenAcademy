@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record model="ir.ui.view" id="course_tree_view">
@@ -20,6 +19,12 @@
             <search>
                 <field name="name"/>
                 <field name="description"/>
+                <filter name="my_courses" string="My Courses"
+                        domain="[('responsible_id', '=', uid)]"/>
+                <group string="Group By">
+                    <filter name="by_responsible" string="Responsible"
+                            context="{'group_by': 'responsible_id'}"/>
+                </group>
             </search>
         </field>
     </record>
@@ -58,8 +63,10 @@
     <record model="ir.actions.act_window" id="action_course">
         <field name="name">Courses</field>
         <field name="res_model">openacademy.course</field>
-        <!--        <field name="view_type">form</field>-->
+        <!-- DO NOT USE <field name="view_type">form</field> -->
         <field name="view_mode">tree,form</field>
+        <!-- search_default_'Filter name'-->
+        <field name="context" eval="{'search_default_my_courses': 1}"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new course

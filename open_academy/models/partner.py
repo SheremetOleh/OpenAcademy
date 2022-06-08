@@ -6,3 +6,4 @@ class Partner(models.Model):
 
     instructor = fields.Boolean("Instructor", default=False)
     sessions = fields.Many2many('openacademy.session', string="Attended Sessions", readonly=True)
+
